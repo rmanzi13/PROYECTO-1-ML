@@ -3,7 +3,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics.pairwise import linear_kernel
 import math
-import json
+
+
 
 from fastapi import FastAPI
 
@@ -198,8 +199,7 @@ async def get_recomendation_nuevo_dataset(title: str):
     sim_scores = sim_scores[1:6]  # Obtener las 5 películas más similares
     movie_indices = [x[0] for x in sim_scores]
 
-    # Devuelvo títulos de las películas más similares
+   # Devuelvo los títulos de las películas más similares
     respuesta_recomendacion = movies_ML['title'].iloc[movie_indices].tolist()
-    respuesta_recomendacion = json.dumps(respuesta_recomendacion)
     return respuesta_recomendacion
   
