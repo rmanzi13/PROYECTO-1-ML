@@ -6,7 +6,7 @@ import math
 
 
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 import uvicorn
 
               
@@ -16,7 +16,7 @@ app = FastAPI(title = 'Proyecto Henry',
 
 @app.get("/")
 async def index():
-    return ('Construyendo mi Api')
+    return Response(content='Construyendo mi API', media_type='text/plain')
 
 @app.get('/about')
 async def about():
