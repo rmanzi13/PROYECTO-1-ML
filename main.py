@@ -28,7 +28,7 @@ movies_df = None  # Variable global para almacenar los datos del archivo CSV
 async def load_data():
     global movies_df
     
-    movies_df = pd.read_csv(r"C:\Users\Rossella\Desktop\PROYECTO-ML\movies_credits_transform2.csv")
+    movies_df = pd.read_csv('movies_credits_transform2.csv')
     
 @app.get("/cantidad_filmaciones_mes")
 async def cantidad_filmaciones_mes(Mes: int):
@@ -174,7 +174,7 @@ async def load_data():
     global movies_ML
 
 
-    movies_ML = pd.read_csv(r"C:\Users\Rossella\Desktop\PROYECTO-ML\movies_ML_parcial.csv")
+    movies_ML = pd.read_csv('movies_ML_parcial.csv')
     
 # Defino la nueva función de recomendación con el nuevo dataset
 @app.get('/recomendacion_nuevo_dataset/{title}')
