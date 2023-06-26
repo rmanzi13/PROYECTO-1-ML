@@ -189,18 +189,17 @@ async def get_recomendation_nuevo_dataset(title: str):
     if title not in movies_ML['title'].values:
         return f"No se encontró ninguna película con el título '{title}'."
     # Encuentro el índice de la película con el título dado
-    indices = pd.Series(movies_ML.index, index=movies_ML['title']).drop_duplicates()
-    idx = indices[title]
+    idx = movies_ML[movies_ML['title'] == title].index[0]
+
     # Calculo las puntuaciones de similitud de todas las películas con la película dada
     sim_scores = list(enumerate(cosine_similarities[idx]))
 
     # Ordeno las películas por puntaje de similitud en orden descendente
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     # Obtengo los índices de las películas más similares (excluyendo la película dada)
-    sim_scores = sim_scores[1:6]  # Obtener las 5 películas más similares
-    movie_indices = [x[0] for x in sim_scores]
+    movie_indices = [x[0] for x in sim_scores[1:6]]  # Obtener las 5 películas más similares
 
    # Devuelvo los títulos de las películas más similares
-    respuesta_recomendacion = movies_ML['title'].iloc[movie_indices].tolist()
+    respuesta_recomendacion = movies_ML.loc[movie_indices, 'title'].tolist()
     return respuesta_recomendacion
   
