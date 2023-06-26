@@ -15,6 +15,10 @@ app = FastAPI(title = 'Proyecto Henry',
               version = '1.0.1')
 
 @app.get("/")
+async def index():
+    return ('Construyendo mi Api')
+
+@app.get('/about')
 async def about():
     return ('Mi primer proyecto')
 
